@@ -7,11 +7,18 @@
 
 ### Live Dashboard
 
+
 [View Interactive Restaurant Operations Dashboard](https://minhajulsimon-beep.github.io/restaurant-operations-platform/)
 
 Explore sales performance, food costs, labor expenses,
 inventory variance, and financial reconciliation
 across three fictional restaurant locations.
+
+
+## Dashboard Preview
+
+![Restaurant Operations Dashboard](dashboard-preview.png)
+
 
 
 A small, reproducible data platform for a restaurant group. It brings POS sales, payments, refunds, stock counts, purchasing and hourly labor into one SQL warehouse, then turns them into daily operations and reconciliation reports.
