@@ -1,0 +1,2 @@
+# Core pipeline, REST demo, dashboard, and tests use only Python's standard library.
+# Python 3.11 or newer. No pip install is required.
