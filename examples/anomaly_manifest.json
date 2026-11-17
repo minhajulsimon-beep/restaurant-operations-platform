@@ -1,0 +1,98 @@
+{
+  "dataset": "Harbor Kitchen fictional restaurant operations",
+  "schema_version": 1,
+  "seed": 42,
+  "start_date": "2026-09-01",
+  "end_date": "2026-09-30",
+  "days": 30,
+  "location_count": 3,
+  "currency": "USD",
+  "synthetic": true,
+  "sources": {
+    "sales_lines": {
+      "file": "sales_lines.jsonl",
+      "rows": 5607
+    },
+    "payments": {
+      "file": "payments.jsonl",
+      "rows": 2832
+    },
+    "refunds": {
+      "file": "refunds.jsonl",
+      "rows": 1
+    },
+    "receipts": {
+      "file": "receipts.jsonl",
+      "rows": 288
+    },
+    "invoice_lines": {
+      "file": "invoice_lines.jsonl",
+      "rows": 289
+    },
+    "inventory_counts": {
+      "file": "inventory_counts.jsonl",
+      "rows": 465
+    },
+    "labor": {
+      "file": "labor.jsonl",
+      "rows": 270
+    },
+    "waste": {
+      "file": "waste.jsonl",
+      "rows": 360
+    }
+  },
+  "min_source_updated_at": "2026-09-02T10:00:00Z",
+  "max_source_updated_at": "2026-10-03T10:00:00Z",
+  "anomalies": {
+    "late_updated_sale": {
+      "id": "ORD-LOC001-20260901-001-L1",
+      "old_source_updated_at": "2026-09-02T10:00:11Z",
+      "new_source_updated_at": "2026-10-03T10:00:00Z"
+    },
+    "invoice_quantity_mismatch": {
+      "invoice_line_id": "INV-LOC001-20260901-V001-I001",
+      "receipt_id": "REC-LOC001-20260901-I001",
+      "excess_quantity_milli": 5000
+    },
+    "missing_payment": {
+      "order_id": "ORD-LOC001-20260903-024",
+      "expected_amount_cents": 1619,
+      "missing_payment_id": "PAY-ORD-LOC001-20260903-024"
+    },
+    "inventory_shrinkage": {
+      "location_id": "LOC001",
+      "business_date": "2026-09-08",
+      "ingredient_id": "I001",
+      "unexplained_quantity_milli": 879
+    },
+    "exact_duplicate_sale": {
+      "id": "ORD-LOC001-20260901-002-L1"
+    },
+    "malformed_sale": {
+      "id": "BAD-SALE-QUANTITY",
+      "reason": "quantity must be an integer"
+    },
+    "voided_sale": {
+      "id": "VOID-SALE-001",
+      "order_id": "VOID-ORDER-001"
+    },
+    "financial_only_refund": {
+      "id": "REFUND-001",
+      "original_business_date": "2026-09-01",
+      "posting_business_date": "2026-09-03"
+    },
+    "unmapped_vendor_sku": {
+      "invoice_line_id": "INV-UNKNOWN-SKU-001",
+      "vendor_id": "V001",
+      "vendor_sku": "UNKNOWN-PACK"
+    }
+  },
+  "limitations": [
+    "No actual Toast API responses or credentials; flat canonical demo records.",
+    "No inter-location transfers, gift cards, chargebacks, service charges, or settlement fees.",
+    "Financial refunds do not reverse physical food consumption.",
+    "Inventory uses fixed standard costs, not a statutory accounting valuation.",
+    "Tax and employer burden rates are illustrative, not tax or payroll guidance."
+  ]
+}

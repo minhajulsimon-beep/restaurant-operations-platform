@@ -1,0 +1,6 @@
+ingredient_id,ingredient_name,base_unit,standard_cost_cents_per_unit
+I001,Chicken,kg,1100
+I002,Rice,kg,280
+I003,Greens,kg,550
+I004,Coffee beans,kg,1800
+I005,Bread rolls,each,60

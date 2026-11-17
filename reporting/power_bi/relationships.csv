@@ -1,0 +1,9 @@
+from_table,from_column,from_cardinality,to_table,to_column,to_cardinality,cross_filter_direction,active
+dim_location,location_id,one,mart_daily_location,location_id,many,single,true
+dim_location,location_id,one,mart_inventory_variance,location_id,many,single,true
+dim_location,location_id,one,mart_payment_reconciliation,location_id,many,single,true
+dim_location,location_id,one,mart_invoice_reconciliation,location_id,many,single,true
+dim_date,business_date,one,mart_daily_location,business_date,many,single,true
+dim_date,business_date,one,mart_inventory_variance,business_date,many,single,true
+dim_date,business_date,one,mart_payment_reconciliation,business_date,many,single,true
+dim_date,business_date,one,mart_invoice_reconciliation,business_date,many,single,true

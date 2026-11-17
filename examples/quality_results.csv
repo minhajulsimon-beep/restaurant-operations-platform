@@ -1,0 +1,14 @@
+run_id,check_name,severity,status,observed,details
+035d632f0d9a4fab9275a64edbf42fa4,collection_identity,ERROR,PASS,0,Expected customer movement identity failed.
+035d632f0d9a4fab9275a64edbf42fa4,contribution_identity,ERROR,PASS,0,Contribution is sales less standard-cost usage and loaded hourly labor.
+035d632f0d9a4fab9275a64edbf42fa4,incomplete_cost_suppression,ERROR,PASS,0,Incomplete inventory cannot produce an apparently complete contribution.
+035d632f0d9a4fab9275a64edbf42fa4,incomplete_inventory,WARN,PASS,0,Missing counts or negative usage suppress location food cost and contribution.
+035d632f0d9a4fab9275a64edbf42fa4,invoice_exceptions,WARN,WARN,2,Invoice lines require investigation against physical receipt and vendor mapping.
+035d632f0d9a4fab9275a64edbf42fa4,net_sales_identity,ERROR,PASS,0,Net sales must exclude tax and tips and subtract posted refunds.
+035d632f0d9a4fab9275a64edbf42fa4,order_tip_consistency,ERROR,PASS,0,Repeated check-level tips and business date must agree across all accepted order lines.
+035d632f0d9a4fab9275a64edbf42fa4,payment_exceptions,WARN,WARN,1,Order/date expected collections differ from reported tender movements; not bank settlement.
+035d632f0d9a4fab9275a64edbf42fa4,refund_payment_link,WARN,PASS,0,Refund tender must match an independently recorded refund.
+035d632f0d9a4fab9275a64edbf42fa4,refund_tip_within_order,ERROR,PASS,0,Cumulative refunded tips cannot exceed the check tip.
+035d632f0d9a4fab9275a64edbf42fa4,refunds_within_sale,ERROR,PASS,0,Cumulative financial refunds cannot exceed original net sale or tax.
+035d632f0d9a4fab9275a64edbf42fa4,rejected_source_records,WARN,WARN,1,Rejected records remain in bronze and quarantine; review before operational use.
+035d632f0d9a4fab9275a64edbf42fa4,unexplained_inventory_variance,WARN,WARN,367,"Nonzero physical usage after recipe consumption and recorded waste; investigate, do not silently adjust."

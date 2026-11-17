@@ -1,0 +1,4 @@
+location_id,location_name,city,currency,timezone,business_day_cutoff_hour
+LOC001,Harbor Kitchen · Boston,Boston,USD,America/New_York,4
+LOC002,Harbor Kitchen · Cambridge,Cambridge,USD,America/New_York,4
+LOC003,Harbor Kitchen · Somerville,Somerville,USD,America/New_York,4

@@ -1,0 +1,2 @@
+source,record_id,reason,run_id
+sales_lines,BAD-SALE-QUANTITY,quantity must be an integer >= 0,035d632f0d9a4fab9275a64edbf42fa4

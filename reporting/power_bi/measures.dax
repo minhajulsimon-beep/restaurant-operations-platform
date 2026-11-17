@@ -1,0 +1,101 @@
+// Create each measure separately in Power BI: Modeling > New measure.
+// Leave source values in integer cents. These measures return USD.
+
+Gross Sales = SUM(mart_daily_location[gross_sales_cents]) / 100
+
+Discounts = SUM(mart_daily_location[discount_cents]) / 100
+
+Posted Refunds = SUM(mart_daily_location[refunds_cents]) / 100
+
+Net Sales = SUM(mart_daily_location[net_sales_cents]) / 100
+
+Orders = SUM(mart_daily_location[order_count])
+
+Labor Cost = SUM(mart_daily_location[labor_cost_cents]) / 100
+
+Incomplete Location Days =
+COALESCE(
+    COUNTROWS(FILTER(mart_daily_location, mart_daily_location[inventory_complete] <> 1)),
+    0
+)
+
+Inventory Is Complete =
+IF(COUNTROWS(mart_daily_location) > 0 && [Incomplete Location Days] = 0, 1, 0)
+
+Food Usage Cost =
+IF([Inventory Is Complete] = 1, SUM(mart_daily_location[food_cost_cents]) / 100, BLANK())
+
+Theoretical Food Cost = SUM(mart_daily_location[theoretical_food_cost_cents]) / 100
+
+Recorded Waste Cost = SUM(mart_daily_location[recorded_waste_cost_cents]) / 100
+
+Unexplained Variance Cost =
+IF([Inventory Is Complete] = 1, SUM(mart_daily_location[unexplained_variance_cost_cents]) / 100, BLANK())
+
+Operating Contribution =
+IF([Inventory Is Complete] = 1, SUM(mart_daily_location[contribution_cents]) / 100, BLANK())
+
+Food Cost % = DIVIDE([Food Usage Cost], [Net Sales])
+
+Labor Cost % = DIVIDE([Labor Cost], [Net Sales])
+
+Contribution Margin % = DIVIDE([Operating Contribution], [Net Sales])
+
+Prime Cost % =
+IF([Inventory Is Complete] = 1, DIVIDE([Food Usage Cost] + [Labor Cost], [Net Sales]), BLANK())
+
+Discount % = DIVIDE([Discounts], [Gross Sales])
+
+Expected Collections = SUM(mart_daily_location[expected_collections_cents]) / 100
+
+Actual Collections = SUM(mart_daily_location[actual_collections_cents]) / 100
+
+Order Expected Collections = SUM(mart_payment_reconciliation[expected_collections_cents]) / 100
+
+Order Actual Collections = SUM(mart_payment_reconciliation[actual_collections_cents]) / 100
+
+Signed POS Difference = SUM(mart_payment_reconciliation[variance_cents]) / 100
+
+Absolute POS Difference =
+SUMX(mart_payment_reconciliation, ABS(mart_payment_reconciliation[variance_cents])) / 100
+
+POS Exception Count =
+COALESCE(
+    COUNTROWS(FILTER(mart_payment_reconciliation, mart_payment_reconciliation[status] <> "MATCHED")),
+    0
+)
+
+Invoice Exception Count =
+COALESCE(
+    COUNTROWS(FILTER(mart_invoice_reconciliation, mart_invoice_reconciliation[status] <> "MATCHED")),
+    0
+)
+
+Invoiced Amount = SUM(mart_invoice_reconciliation[invoiced_cents]) / 100
+
+Invoice Amount Difference = SUM(mart_invoice_reconciliation[amount_variance_cents]) / 100
+
+// Use these two detail measures in ingredient visuals. The quantity measure
+// deliberately shows no grand total across different ingredients or units.
+
+Inventory Detail Complete =
+IF(
+    COUNTROWS(mart_inventory_variance) > 0
+        && COUNTROWS(FILTER(mart_inventory_variance, mart_inventory_variance[inventory_complete] <> 1)) = 0,
+    1,
+    0
+)
+
+Unexplained Ingredient Quantity =
+IF(
+    [Inventory Detail Complete] = 1 && HASONEVALUE(mart_inventory_variance[ingredient_id]),
+    SUM(mart_inventory_variance[unexplained_variance_milli]) / 1000,
+    BLANK()
+)
+
+Unexplained Ingredient Cost =
+IF(
+    [Inventory Detail Complete] = 1,
+    SUM(mart_inventory_variance[unexplained_variance_cost_cents]) / 100,
+    BLANK()
+)
