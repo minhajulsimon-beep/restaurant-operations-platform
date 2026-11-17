@@ -1,6 +1,10 @@
 # Restaurant Operations Platform
 
 
+[![Restaurant Data Platform CI](https://github.com/minhajulsimon-beep/restaurant-operations-platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/minhajulsimon-beep/restaurant-operations-platform/actions/workflows/ci.yml)
+
+
+
 ### Live Dashboard
 
 [View Interactive Restaurant Operations Dashboard](https://minhajulsimon-beep.github.io/restaurant-operations-platform/)
